@@ -8,12 +8,11 @@
         <title>Liste2</title>
     </head>
     <body>
+        <h1>Students</h1>
         <?php
-            $db=mysql_connect('localhost', 'rt', 'rtlry');
-            mysql_select_db('students',$db);
-            $requete="SELECT * FROM students";
-            $students=mysql_query($requete);        
-            echo"<h1>Students</h1>";
+            $db=new PDO('mysql:host=localhost;dbname=test','rt','rtlry');
+            $resultat=$db->query('SELECT * FROM students');
+            $students=$resultat->fetchAll();
             foreach($students as $student){
                 echo"<li>$student[firstname] $student[lastname] $student[email]</li>";
             };
